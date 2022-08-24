@@ -19,7 +19,7 @@
   ],
   "volumes": [],
   "networkMode": null,
-  "memory": 128,
+  "memory": "128",
   "cpu": null,
   "executionRoleArn": null,
   "family": "aws-ecs-go-cicd-task-definition",
