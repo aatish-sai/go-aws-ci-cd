@@ -1,0 +1,28 @@
+{
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "inferenceAccelerators": [],
+  "containerDefinitions": [
+    {
+      "name": "aws-ecs-go-cicd",
+      "image": "aws-ecs-go-cicd-repository:00000",
+      "resourceRequirements": null,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": "8081",
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ],
+  "volumes": [],
+  "networkMode": null,
+  "memory": 128,
+  "cpu": null,
+  "executionRoleArn": null,
+  "family": "aws-ecs-go-cicd-task-definition",
+  "taskRoleArn": null,
+  "placementConstraints": []
+}

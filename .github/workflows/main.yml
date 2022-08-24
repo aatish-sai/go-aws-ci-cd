@@ -55,18 +55,18 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-#      - name: Fill the new image ID in Amazon ECS Task Definition
-#        id: task-def
-#        uses: aws-actions/amazon-ecs-render-task-definition@v1
-#        with:
-#          task-definition: task-definition.json
-#          container-name: false
-#          image: ${{ steps.push-image.output.image }}
+      - name: Fill the new image ID in Amazon ECS Task Definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: aws-ecs-go-cicd
+          image: ${{ steps.push-image.output.image }}
 #
-#      - name: Deploy Amazon ECS Task Definition
-#        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-#        with:
-#          task-definition: ${{ steps.task-def.outputs.task-definition }}
-#          service: false
-#          cluster: false
-#          wait-for-service-stability: true
+      - name: Deploy Amazon ECS Task Definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: aws-ecs-go-cicd-service
+          cluster: aatish-dev-cluster
+          wait-for-service-stability: true
