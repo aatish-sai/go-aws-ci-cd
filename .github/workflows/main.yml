@@ -46,6 +46,10 @@ jobs:
 
       - name: Push Image to Amazon ECR
         id: push-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: aws_ecs_go_cicd
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           # Push it to ECR
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
