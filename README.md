@@ -1,0 +1,1 @@
+[![Go CICD](https://github.com/aatish-sai/go-aws-ci-cd/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/aatish-sai/go-aws-ci-cd/actions/workflows/main.yml)
