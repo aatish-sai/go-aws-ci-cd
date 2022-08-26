@@ -22,7 +22,7 @@ WORKDIR /
 
 COPY --from=build /go-aws-cicd /go-aws-cicd
 
-EXPOSE 8080
+EXPOSE 8081
 
 USER nonroot:nonroot
 
