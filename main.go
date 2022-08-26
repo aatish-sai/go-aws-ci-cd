@@ -2,20 +2,25 @@ package main
 
 import (
 	"fmt"
-	"html"
+	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
 )
 
+func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprintf(w, "Welcome!\n")
+}
+
+func HealthCheck(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprintf(w, "OK")
+}
+
 func main() {
+	router := httprouter.New()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-	})
+	router.GET("/", Index)
 
-	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "OK")
-	})
+	router.GET("/health", HealthCheck)
 
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	log.Fatal(http.ListenAndServe(":8081", router))
 }
